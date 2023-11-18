@@ -11,7 +11,7 @@ app.use(cors())
 app.use(express.json())
 app.use(attachDbConnection)
 
-app.use("/api/validator", validatorRoutes)
+app.use("/api/validators", validatorRoutes)
 
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);

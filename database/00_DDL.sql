@@ -7,7 +7,7 @@ CREATE TABLE Sinister_formula (
 );
 
 -- Tabela Company
-CREATE TABLE Company (
+CREATE TABLE Companies (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
     operator VARCHAR(255),
@@ -17,7 +17,7 @@ CREATE TABLE Company (
 );
 
 -- Tabela Validador
-CREATE TABLE Validator (
+CREATE TABLE Validators (
     id INT AUTO_INCREMENT PRIMARY KEY,
     company_id INT,
     competence DATE,
@@ -25,16 +25,16 @@ CREATE TABLE Validator (
     revenue DECIMAL(10, 2),
     sinister DECIMAL(10, 2),
     accident_rate DECIMAL(5, 2),
-    FOREIGN KEY (company_id) REFERENCES Company (id)
+    FOREIGN KEY (company_id) REFERENCES Companies (id)
 );
 
 -- Tabela revenue
-CREATE TABLE Revenue (
+CREATE TABLE Revenues (
     id INT AUTO_INCREMENT PRIMARY KEY,
     company_id INT,
     value DECIMAL(10, 2),
     data DATE,
-    FOREIGN KEY (company_id) REFERENCES Company (id)
+    FOREIGN KEY (company_id) REFERENCES Companies (id)
 );
 
 -- Tabela Eventos
@@ -46,14 +46,14 @@ CREATE TABLE Appointments (
     name_benef VARCHAR(255),
     cpf VARCHAR(11),
     cod_procedure INT,
-    FOREIGN KEY (company_id) REFERENCES Company (id)
+    FOREIGN KEY (company_id) REFERENCES Companies (id)
 );
 
 -- Tabela Colaborador
-CREATE TABLE Collaborator (
+CREATE TABLE Collaborators (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
     company_id INT,
     cpf VARCHAR(11),
-    FOREIGN KEY (company_id) REFERENCES Company (id)
+    FOREIGN KEY (company_id) REFERENCES Companies (id)
 );

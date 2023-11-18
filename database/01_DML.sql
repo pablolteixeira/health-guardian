@@ -5,13 +5,13 @@ VALUES
     ('S=s/f'),
     ('S=s-f/f');
 
-INSERT INTO Company (name, operator, broker, cod_sinister)
+INSERT INTO Companies (name, operator, broker, cod_sinister)
 VALUES
     ('Fettrominas', 'Unimed BH', 'GNDI', 1),
     ('Afu', 'Unimed Rio', 'GNDI', 1),
     ('Acate', 'Unimed Floripa', 'GNDI', 1);
 
-INSERT INTO Validator (company_id, competence, lives, revenue, sinister, accident_rate)
+INSERT INTO Validators (company_id, competence, lives, revenue, sinister, accident_rate)
 VALUES
     (1, '2023-09-01', 10, 5465, 1281.15, 23.44),
     (1, '2023-08-01', 8, 5894, 1508.35, 25.59),
@@ -20,7 +20,7 @@ VALUES
     (2, '2023-07-01', 5, 3233, 713.8, 22.07),
     (3, '2023-09-01', 10, 1444, 1415.85, 98.05);
 
-INSERT INTO Revenue (company_id, value, data)
+INSERT INTO Revenues (company_id, value, data)
 VALUES
     (1, 5465, '2023-09-01'),
     (1, 5894, '2023-08-01'),
@@ -41,7 +41,7 @@ VALUES
     (589.60, '2023-09-01', 3, 'Bianca Santos', '89012345678', 1009),
     (826.25, '2023-09-01', 3, 'Gabriel Pereira', '90123456789', 1010);
 
-INSERT INTO Collaborator (name, company_id, cpf)
+INSERT INTO Collaborators (name, company_id, cpf)
 VALUES
     ( 'João Silva', 1, '12345678901'),
     ( 'Maria Oliveira', 1, '98765432101'),
