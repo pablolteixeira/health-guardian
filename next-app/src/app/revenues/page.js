@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react'
 import { Table, Menu, Container } from 'semantic-ui-react'
 
-//import RevenuesNew from '@/components/Revenues/RevenuesNew'
-//import RevenuesUpdate from '@/components/Revenues/RevenuesUpdate'
-//import RevenuesDelete from '@/components/Revenues/RevenuesDelete'
+import RevenuesNew from '@/components/Revenues/RevenuesNew'
+import RevenuesUpdate from '@/components/Revenues/RevenuesUpdate'
+import RevenuesDelete from '@/components/Revenues/RevenuesDelete'
 
 function Revenues() {
     const [load, setLoad] = useState(0)
@@ -66,13 +66,13 @@ function Revenues() {
             </Container>
             <br /><br />
             <Container style={{width: "70%"}} textAlign='center'>
-                {/*
+                {
                     menuOption === "new" ?
                         <RevenuesNew reloadPage={reloadPage} />
                     : menuOption === "update" ?
                         <RevenuesUpdate reloadPage={reloadPage} />
                     : <RevenuesDelete reloadPage={reloadPage} />
-                */}
+                }
             </Container>
             <br /><br />
             <Container style={{width: "90%"}}>
