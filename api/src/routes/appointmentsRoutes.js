@@ -4,7 +4,7 @@ const router = express.Router();
 // Define routes for '/api/company'
 router.get('/', async (req, res) => {
     try {
-        const [rows] = await req.db.execute("SELECT * FROM Companies");
+        const [rows] = await req.db.execute("SELECT * FROM Appointments");
         req.db.release()
         res.json(rows);
     } catch (error) {
@@ -15,10 +15,10 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const { name, operator, broker, cod_sinister } = req.body
+        const { value, competence, company_id, name_benef, cpf, cod_procedure} = req.body
         
         const [result] = await req.db.execute(
-            `INSERT INTO Companies (name, operator, broker, cod_sinister) VALUES ('${name}', '${operator}', '${broker}', ${cod_sinister})`
+            `INSERT INTO Appointments (value, competence, company_id, name_benef, cpf, cod_procedure) VALUES ('${value}', '${competence}', '${company_id}', '${name_benef}', '${cpf}', ${cod_procedure})`
         );
         req.db.release()
         res.status(201).json(result);
@@ -30,12 +30,12 @@ router.post('/', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-        const [result] = await req.db.execute(`DELETE FROM Companies WHERE id=${req.params.id}`);
+        const [result] = await req.db.execute(`DELETE FROM Appointments WHERE id=${req.params.id}`);
         req.db.release()
         if (result.affectedRows === 0) {
-            res.status(404).json({ message: "Company not found." })
+            res.status(404).json({ message: "Appointments not found." })
         } else {
-            res.json({ message: `Company excluído com sucesso.` });
+            res.json({ message: `Appointments excluído com sucesso.` });
         }
     } catch (error) {
         console.error('Error executing query:', error);
@@ -45,14 +45,16 @@ router.delete('/:id', async (req, res) => {
 
 router.put('/', async (req, res) => {
     try {
-        const { id, name, operator, broker, cod_sinister } = req.body
+        const { id, value, competence, company_id, name_benef, cpf, cod_procedure } = req.body
 
         const [result] = await req.db.execute(
-            `UPDATE Companies 
-            SET name = '${name}', 
-            operator = '${operator}', 
-            broker = '${broker}', 
-            cod_sinister = ${cod_sinister}
+            `UPDATE Appointments 
+            SET value = '${value}', 
+            competence = '${competence}',
+            company_id = ${company_id}, 
+            name_benef = ${name_benef}, 
+            cpf = '${cpf}', 
+            cod_procedure = ${cod_procedure}
             WHERE id = ${id}`
         );
         req.db.release()

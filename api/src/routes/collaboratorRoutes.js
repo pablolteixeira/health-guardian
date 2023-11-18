@@ -4,7 +4,7 @@ const router = express.Router();
 // Define routes for '/api/company'
 router.get('/', async (req, res) => {
     try {
-        const [rows] = await req.db.execute("SELECT * FROM Companies");
+        const [rows] = await req.db.execute("SELECT * FROM Collaborators");
         req.db.release()
         res.json(rows);
     } catch (error) {
@@ -15,10 +15,10 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const { name, operator, broker, cod_sinister } = req.body
+        const { name, company_id, cpf} = req.body
         
         const [result] = await req.db.execute(
-            `INSERT INTO Companies (name, operator, broker, cod_sinister) VALUES ('${name}', '${operator}', '${broker}', ${cod_sinister})`
+            `INSERT INTO Collaborators (name, company_id, cpf) VALUES ('${name}', '${company_id}', '${cpf}')`
         );
         req.db.release()
         res.status(201).json(result);
@@ -30,12 +30,12 @@ router.post('/', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-        const [result] = await req.db.execute(`DELETE FROM Companies WHERE id=${req.params.id}`);
+        const [result] = await req.db.execute(`DELETE FROM Collaborators WHERE id=${req.params.id}`);
         req.db.release()
         if (result.affectedRows === 0) {
-            res.status(404).json({ message: "Company not found." })
+            res.status(404).json({ message: "Collaborators not found." })
         } else {
-            res.json({ message: `Company excluído com sucesso.` });
+            res.json({ message: `Collaborators excluído com sucesso.` });
         }
     } catch (error) {
         console.error('Error executing query:', error);
@@ -45,14 +45,13 @@ router.delete('/:id', async (req, res) => {
 
 router.put('/', async (req, res) => {
     try {
-        const { id, name, operator, broker, cod_sinister } = req.body
+        const { id, name, company_id, cpf } = req.body
 
         const [result] = await req.db.execute(
-            `UPDATE Companies 
+            `UPDATE Collaborators 
             SET name = '${name}', 
-            operator = '${operator}', 
-            broker = '${broker}', 
-            cod_sinister = ${cod_sinister}
+            company_id = ${company_id}, 
+            cpf = '${cpf}', 
             WHERE id = ${id}`
         );
         req.db.release()
