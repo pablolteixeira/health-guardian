@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  # MySQL Service
+  mysql:
+    image: mysql:latest
+    container_name: mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234
+      MYSQL_DATABASE: database
+      MYSQL_USER: main_user
+      MYSQL_PASSWORD: password1234
+    ports:
+      - "3306:3306"
+    networks:
+      - my_network
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+
+  # Node.js API Service
+  api:
+    build:
+      context: ./api
+    container_name: api_container
+    depends_on:
+      - mysql
+    environment:
+      PORT: "3008"
+    ports:
+      - "3008:3008"
+    networks:
+      - my_network
+
+  # Next.js Frontend Service
+  #frontend:
+  #  build:
+  #    context: ./path/to/your/frontend
+  #  container_name: frontend_container
+  #  ports:
+  #    - "80:3000"
+  #  networks:
+  #    - my_network
+  #  depends_on:
+  #    - api
+
+networks:
+  my_network:
+    driver: bridge
