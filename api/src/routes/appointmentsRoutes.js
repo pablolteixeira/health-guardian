@@ -15,10 +15,10 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const { value, competence, company_id, name_benef, cpf, cod_procedure} = req.body
+        const { value, competence, company_id, collaborator_id, cod_procedure} = req.body
         
         const [result] = await req.db.execute(
-            `INSERT INTO Appointments (value, competence, company_id, name_benef, cpf, cod_procedure) VALUES ('${value}', '${competence}', '${company_id}', '${name_benef}', '${cpf}', ${cod_procedure})`
+            `INSERT INTO Appointments (value, competence, company_id, collaborator_id, cod_procedure) VALUES ('${value}', '${competence}', '${company_id}', ${collaborator_id}, ${cod_procedure})`
         );
         req.db.release()
         res.status(201).json(result);
@@ -45,15 +45,14 @@ router.delete('/:id', async (req, res) => {
 
 router.put('/', async (req, res) => {
     try {
-        const { id, value, competence, company_id, name_benef, cpf, cod_procedure } = req.body
+        const { id, value, competence, company_id, collaborator_id, cod_procedure } = req.body
 
         const [result] = await req.db.execute(
             `UPDATE Appointments 
             SET value = '${value}', 
             competence = '${competence}',
             company_id = ${company_id}, 
-            name_benef = ${name_benef}, 
-            cpf = '${cpf}', 
+            collaborator_id = ${collaborator_id},
             cod_procedure = ${cod_procedure}
             WHERE id = ${id}`
         );

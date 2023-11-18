@@ -15,10 +15,10 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const { name, company_id, cpf} = req.body
+        const { name, company_id, cpf } = req.body
         
         const [result] = await req.db.execute(
-            `INSERT INTO Collaborators (name, company_id, cpf) VALUES ('${name}', '${company_id}', '${cpf}')`
+            `INSERT INTO Collaborators (name, company_id, cpf) VALUES ('${name}', '${company_id}', ${cpf})`
         );
         req.db.release()
         res.status(201).json(result);
@@ -33,9 +33,9 @@ router.delete('/:id', async (req, res) => {
         const [result] = await req.db.execute(`DELETE FROM Collaborators WHERE id=${req.params.id}`);
         req.db.release()
         if (result.affectedRows === 0) {
-            res.status(404).json({ message: "Collaborators not found." })
+            res.status(404).json({ message: "Collaborator not found." })
         } else {
-            res.json({ message: `Collaborators excluído com sucesso.` });
+            res.json({ message: `Collaborator excluído com sucesso.` });
         }
     } catch (error) {
         console.error('Error executing query:', error);
@@ -51,7 +51,7 @@ router.put('/', async (req, res) => {
             `UPDATE Collaborators 
             SET name = '${name}', 
             company_id = ${company_id}, 
-            cpf = '${cpf}', 
+            cpf = '${cpf}'
             WHERE id = ${id}`
         );
         req.db.release()

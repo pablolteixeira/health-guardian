@@ -23,8 +23,8 @@ app.use((err, req, res, next) => {
 app.use("/api/validators", validatorRoutes)
 app.use("/api/companies", companyRoutes)
 app.use("/api/appointments", appointmentsRoutes)
-app.use("/api/revenue", revenueRoutes)
-app.use("/api/collaborator", collaboratorRoutes)
+app.use("/api/revenues", revenueRoutes)
+app.use("/api/collaborators", collaboratorRoutes)
 
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);

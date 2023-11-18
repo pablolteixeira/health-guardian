@@ -37,18 +37,6 @@ CREATE TABLE Revenues (
     FOREIGN KEY (company_id) REFERENCES Companies (id)
 );
 
--- Tabela Eventos
-CREATE TABLE Appointments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    value DECIMAL(10, 2),
-    competence DATE,
-    company_id INT,
-    name_benef VARCHAR(255),
-    cpf VARCHAR(11),
-    cod_procedure INT,
-    FOREIGN KEY (company_id) REFERENCES Companies (id)
-);
-
 -- Tabela Colaborador
 CREATE TABLE Collaborators (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -56,4 +44,16 @@ CREATE TABLE Collaborators (
     company_id INT,
     cpf VARCHAR(11),
     FOREIGN KEY (company_id) REFERENCES Companies (id)
+);
+
+-- Tabela Eventos
+CREATE TABLE Appointments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    value DECIMAL(10, 2),
+    competence DATE,
+    company_id INT,
+    collaborator_id INT,
+    cod_procedure INT,
+    FOREIGN KEY (company_id) REFERENCES Companies (id),
+    FOREIGN KEY (collaborator_id) REFERENCES Collaborators (id)
 );

@@ -6,23 +6,22 @@ import { Button, Form, Segment, Dropdown } from "semantic-ui-react"
 
 import convertArrayToObject from "@/utils/convertArrayToObject";
 
-function CompaniesUpdate({ reloadPage }) {
+function AppointmentsUpdate({ reloadPage }) {
     const [dropdownId, setDropdownId] = useState("choice")
     const [queryObject, setQueryObject] = useState({}) 
     const [dropdownArray, setDropdownArray] = useState([])
 
-    const [companyUpdateData, setCompanyUpdateData] = useState({
+    const [appointmentsUpdateData, setAppointmentsUpdateData] = useState({
         id: "",
-        name: "", 
-        operator: "", 
-        broker: "", 
-        cod_sinister: ""
+        value: "", 
+        collaborator_id: "", 
+        cod_procedure: "", 
     })
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-              const response = await fetch('http://localhost:3008/api/companies');
+              const response = await fetch('http://localhost:3008/api/appointments');
               const result = await response.json();
             
               setDropdownArray(result.map(query => ({ key: query.id, value: query.id, text: query.id })))
@@ -38,17 +37,17 @@ function CompaniesUpdate({ reloadPage }) {
     const handleInput = event => {
         const { name, value } = event.target
 
-        setCompanyUpdateData(prev => ({ ...prev, [name]: value }))
+        setAppointmentsUpdateData(prev => ({ ...prev, [name]: value }))
     }
 
-    const updateCompany = async () => {
+    const updateAppointments = async () => {
         try {
-            const response = await fetch("http://localhost:3008/api/companies", {
+            const response = await fetch("http://localhost:3008/api/appointments", {
               method: "PUT",
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify(companyUpdateData),
+              body: JSON.stringify(appointmentsUpdateData),
             });
       
             if (!response.ok) {
@@ -62,13 +61,16 @@ function CompaniesUpdate({ reloadPage }) {
 
             setDropdownId("choice")
 
-            setCompanyUpdateData({
+            setAppointmentsUpdateData({
                 id: "",
-                name: "", 
-                operator: "", 
-                broker: "", 
-                cod_sinister: ""
+                value: "", 
+                collaborator_id: "", 
+                cpf: "", 
             })
+            id: "",
+        value: "", 
+        collaborator_id: "", 
+        cod_procedure: "", 
 
             reloadPage()
         } catch (error) {
@@ -79,27 +81,25 @@ function CompaniesUpdate({ reloadPage }) {
     const handleDropdown = (event, data) => {
         const dropdownId = data.value
 
-        setCompanyUpdateData({
+        setAppointmentsUpdateData({
             id: dropdownId,
-            name: queryObject[dropdownId].name, 
-            operator: queryObject[dropdownId].operator, 
-            broker: queryObject[dropdownId].broker, 
-            cod_sinister: queryObject[dropdownId].cod_sinister, 
+            value: queryObject[dropdownId].value, 
+            collaborator_id: queryObject[dropdownId].collaborator_id, 
+            cpf: queryObject[dropdownId].cpf, 
         })
 
         setDropdownId(data.value)
     }
 
     const {
-        name, 
-        operator, 
-        broker, 
-        cod_sinister
-    } = companyUpdateData
+        value, 
+        collaborator_id, 
+        cpf
+    } = appointmentsUpdateData
 
     return (
         <>
-            <h4>UPDATE COMPANY</h4>
+            <h4>UPDATE APPOINTMENT</h4>
             <Segment> 
                 <Form>
                     <Dropdown 
@@ -116,22 +116,18 @@ function CompaniesUpdate({ reloadPage }) {
                             (
                                 <>
                                     <Form.Field>
-                                        <label>Name:</label>
-                                        <input onChange={handleInput} name="name" value={name} placeholder='' />
+                                        <label>value:</label>
+                                        <input onChange={handleInput} name="value" value={value} placeholder='' />
                                     </Form.Field>
                                     <Form.Field>
-                                        <label>Operator:</label>
-                                        <input onChange={handleInput} name="operator" value={operator} placeholder='' />
+                                        <label>Company ID:</label>
+                                        <input onChange={handleInput} name="collaborator_id" value={collaborator_id} placeholder='' />
                                     </Form.Field>
                                     <Form.Field>
-                                        <label>Broker:</label>
-                                        <input onChange={handleInput} name="broker" value={broker} placeholder='' />
+                                        <label>CPF:</label>
+                                        <input onChange={handleInput} name="cpf" value={cpf} placeholder='' />
                                     </Form.Field>
-                                    <Form.Field>
-                                        <label>Sinister Code:</label>
-                                        <input onChange={handleInput} name="cod_sinister" value={cod_sinister} placeholder='' />
-                                    </Form.Field>
-                                    <Button onClick={updateCompany} type='submit'>Update</Button>
+                                    <Button onClick={updateAppointments} type='submit'>Update</Button>
                                 </>
                             )
                         :
@@ -143,4 +139,4 @@ function CompaniesUpdate({ reloadPage }) {
     )
 }
 
-export default CompaniesUpdate
+export default AppointmentsUpdate

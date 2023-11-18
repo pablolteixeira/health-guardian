@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react'
 import { Table, Menu, Container } from 'semantic-ui-react'
 
-//import CollaboratorsNew from '@/components/Collaborators/CollaboratorsNew'
-//import CollaboratorsUpdate from '@/components/Collaborators/CollaboratorsUpdate'
-//import CollaboratorsDelete from '@/components/Collaborators/CollaboratorsDelete'
+import CollaboratorsNew from '@/components/Collaborators/CollaboratorsNew'
+import CollaboratorsUpdate from '@/components/Collaborators/CollaboratorsUpdate'
+import CollaboratorsDelete from '@/components/Collaborators/CollaboratorsDelete'
 
 function Collaborators() {
     const [load, setLoad] = useState(0)
@@ -66,13 +66,13 @@ function Collaborators() {
             </Container>
             <br /><br />
             <Container style={{width: "70%"}} textAlign='center'>
-                {/*
+                {
                     menuOption === "new" ?
                         <CollaboratorsNew reloadPage={reloadPage} />
                     : menuOption === "update" ?
                         <CollaboratorsUpdate reloadPage={reloadPage} />
                     : <CollaboratorsDelete reloadPage={reloadPage} />
-                */}
+                }
             </Container>
             <br /><br />
             <Container style={{width: "90%"}}>
