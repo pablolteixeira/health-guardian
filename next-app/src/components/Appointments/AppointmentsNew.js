@@ -43,16 +43,20 @@ function AppointmentsNew({ reloadPage }) {
         }
 
         setAppointmentsNewData({
-            name: "", 
-            company_id: "", 
-            cpf: ""
+            value: "", 
+            competence: "",
+            company_id: "",
+            collaborator_id: "", 
+            cod_procedure: ""
         })
     }
 
     const {
-        name, 
+        value, 
+        competence, 
         company_id, 
-        cpf
+        collaborator_id, 
+        cod_procedure
     } = appointmentsNewData
 
     return (
@@ -61,16 +65,24 @@ function AppointmentsNew({ reloadPage }) {
             <Segment> 
                 <Form>
                     <Form.Field>
-                        <label>Name:</label>
-                        <input onChange={handleInput} name="name" value={name} placeholder='' />
+                        <label>Value:</label>
+                        <input onChange={handleInput} name="value" value={value} placeholder='' />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Competence:</label>
+                        <input onChange={handleInput} name="competence" value={competence} placeholder='' />
                     </Form.Field>
                     <Form.Field>
                         <label>Company ID:</label>
                         <input onChange={handleInput} name="company_id" value={company_id} placeholder='' />
                     </Form.Field>
                     <Form.Field>
-                        <label>CPF:</label>
-                        <input onChange={handleInput} name="cpf" value={cpf} placeholder='' />
+                        <label>Collaborator ID:</label>
+                        <input onChange={handleInput} name="collaborator_id" value={collaborator_id} placeholder='' />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Procedure Code:</label>
+                        <input onChange={handleInput} name="cod_procedure" value={cod_procedure} placeholder='' />
                     </Form.Field>
                     <Button onClick={newValidator} type='submit'>New</Button>
                 </Form>

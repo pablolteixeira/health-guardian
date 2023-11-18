@@ -12,8 +12,9 @@ function AppointmentsUpdate({ reloadPage }) {
     const [dropdownArray, setDropdownArray] = useState([])
 
     const [appointmentsUpdateData, setAppointmentsUpdateData] = useState({
-        id: "",
         value: "", 
+        competence: "", 
+        company_id: "", 
         collaborator_id: "", 
         cod_procedure: "", 
     })
@@ -62,15 +63,12 @@ function AppointmentsUpdate({ reloadPage }) {
             setDropdownId("choice")
 
             setAppointmentsUpdateData({
-                id: "",
                 value: "", 
+                competence: "", 
+                company_id: "", 
                 collaborator_id: "", 
-                cpf: "", 
+                cod_procedure: "", 
             })
-            id: "",
-        value: "", 
-        collaborator_id: "", 
-        cod_procedure: "", 
 
             reloadPage()
         } catch (error) {
@@ -84,8 +82,10 @@ function AppointmentsUpdate({ reloadPage }) {
         setAppointmentsUpdateData({
             id: dropdownId,
             value: queryObject[dropdownId].value, 
+            competence: queryObject[dropdownId].competence,
+            company_id: queryObject[dropdownId].company_id,
             collaborator_id: queryObject[dropdownId].collaborator_id, 
-            cpf: queryObject[dropdownId].cpf, 
+            cod_procedure: queryObject[dropdownId].cod_procedure, 
         })
 
         setDropdownId(data.value)
@@ -93,8 +93,10 @@ function AppointmentsUpdate({ reloadPage }) {
 
     const {
         value, 
+        competence, 
+        company_id, 
         collaborator_id, 
-        cpf
+        cod_procedure
     } = appointmentsUpdateData
 
     return (
@@ -116,16 +118,24 @@ function AppointmentsUpdate({ reloadPage }) {
                             (
                                 <>
                                     <Form.Field>
-                                        <label>value:</label>
+                                        <label>Value:</label>
                                         <input onChange={handleInput} name="value" value={value} placeholder='' />
                                     </Form.Field>
                                     <Form.Field>
+                                        <label>Competence:</label>
+                                        <input onChange={handleInput} name="competence" value={competence} placeholder='' />
+                                    </Form.Field>
+                                    <Form.Field>
                                         <label>Company ID:</label>
+                                        <input onChange={handleInput} name="company_id" value={company_id} placeholder='' />
+                                    </Form.Field>
+                                    <Form.Field>
+                                        <label>Collaborator ID:</label>
                                         <input onChange={handleInput} name="collaborator_id" value={collaborator_id} placeholder='' />
                                     </Form.Field>
                                     <Form.Field>
-                                        <label>CPF:</label>
-                                        <input onChange={handleInput} name="cpf" value={cpf} placeholder='' />
+                                        <label>Procedure Code:</label>
+                                        <input onChange={handleInput} name="cod_procedure" value={cod_procedure} placeholder='' />
                                     </Form.Field>
                                     <Button onClick={updateAppointments} type='submit'>Update</Button>
                                 </>
