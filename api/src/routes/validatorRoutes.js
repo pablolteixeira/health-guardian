@@ -4,7 +4,7 @@ const router = express.Router();
 // Define routes for '/api/validator'
 router.get('/', async (req, res) => {
     try {
-        const [rows] = await req.db.execute("SELECT * FROM Validator");
+        const [rows] = await req.db.execute("SELECT * FROM Users");
         res.json(rows);
     } catch (error) {
         console.error('Error executing query:', error);

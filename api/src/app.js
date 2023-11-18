@@ -9,7 +9,7 @@ const validatorRoutes = require("./routes/validatorRoutes")
 app.use(express.json())
 app.use(attachDbConnection)
 
-app.use("api/validator", validatorRoutes)
+app.use("/api/validator", validatorRoutes)
 
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);

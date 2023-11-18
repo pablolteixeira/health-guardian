@@ -1,3 +1,5 @@
+/*USE mysql;
+
 -- Insert into Claim Formula
 INSERT INTO Claim_Formula (formula, variable1, variable2, variable3)
 VALUES
@@ -58,3 +60,4 @@ VALUES
     ('Mateus Silva', 2, 'Unimed Rio', '78901234567'),
     ('Bianca Santos', 3, 'Unimed Floripa', '89012345678'),
     ('Gabriel Pereira', 3, 'Unimed Floripa', '90123456789');
+*/
