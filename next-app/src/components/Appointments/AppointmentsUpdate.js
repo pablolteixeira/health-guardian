@@ -82,7 +82,7 @@ function AppointmentsUpdate({ reloadPage }) {
         setAppointmentsUpdateData({
             id: dropdownId,
             value: queryObject[dropdownId].value, 
-            competence: queryObject[dropdownId].competence,
+            competence: queryObject[dropdownId].competence.slice(0, 10),
             company_id: queryObject[dropdownId].company_id,
             collaborator_id: queryObject[dropdownId].collaborator_id, 
             cod_procedure: queryObject[dropdownId].cod_procedure, 

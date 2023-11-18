@@ -6,11 +6,11 @@ import { Button, Form, Segment } from "semantic-ui-react"
 
 function AppointmentsNew({ reloadPage }) {
     const [appointmentsNewData, setAppointmentsNewData] = useState({
-        value, 
-        competence, 
-        company_id, 
-        collaborator_id, 
-        cod_procedure
+        value: "", 
+        competence: "", 
+        company_id: "", 
+        collaborator_id: "", 
+        cod_procedure: "", 
     })
 
     const handleInput = event => {

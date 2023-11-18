@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
         const { company_id, value, data} = req.body
         
         const [result] = await req.db.execute(
-            `INSERT INTO Revenues (company_id, value, data) VALUES ('${company_id}', '${value}', ${data})`
+            `INSERT INTO Revenues (company_id, value, data) VALUES ('${company_id}', '${value}', '${data}')`
         );
         req.db.release()
         res.status(201).json(result);
@@ -49,9 +49,9 @@ router.put('/', async (req, res) => {
 
         const [result] = await req.db.execute(
             `UPDATE Revenues 
-            SET company_id = '${company_id}', 
+            SET company_id = ${company_id}, 
             value = '${value}',
-            data = ${data}
+            data = '${data}'
             WHERE id = ${id}`
         );
         req.db.release()

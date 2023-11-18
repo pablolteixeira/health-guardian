@@ -81,7 +81,7 @@ function RevenuesUpdate({ reloadPage }) {
             id: dropdownId,
             company_id: queryObject[dropdownId].company_id, 
             value: queryObject[dropdownId].value,
-            data: queryObject[dropdownId].data,
+            data: queryObject[dropdownId].data.slice(0, 10),
         })
 
         setDropdownId(data.value)
