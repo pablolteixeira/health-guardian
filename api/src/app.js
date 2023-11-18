@@ -6,6 +6,7 @@ const app = express()
 const port = process.env.PORT || 3000
 
 const validatorRoutes = require("./routes/validatorRoutes")
+const companyRoutes = require("./routes/companyRoutes")
 
 app.use(cors())
 app.use(express.json())
@@ -17,6 +18,7 @@ app.use((err, req, res, next) => {
 });
 
 app.use("/api/validators", validatorRoutes)
+app.use("/api/companies", companyRoutes)
 
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);
