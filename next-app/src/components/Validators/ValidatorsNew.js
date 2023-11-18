@@ -20,7 +20,7 @@ function ValidatorsNew({ reloadPage }) {
         setValidatorNewData(prev => ({ ...prev, [name]: value }))
     }
 
-    const newValidador = async () => {
+    const newValidator = async () => {
         try {
             const response = await fetch("http://localhost:3008/api/validators", {
               method: "POST",
@@ -91,7 +91,7 @@ function ValidatorsNew({ reloadPage }) {
                         <label>Accident Rate:</label>
                         <input onChange={handleInput} name="accident_rate" value={accident_rate} placeholder='' />
                     </Form.Field>
-                    <Button onClick={newValidador} type='submit'>New</Button>
+                    <Button onClick={newValidator} type='submit'>New</Button>
                 </Form>
             </Segment>
         </>

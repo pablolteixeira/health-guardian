@@ -5,6 +5,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     try {
         const [rows] = await req.db.execute("SELECT * FROM Validators");
+        req.db.release()
         res.json(rows);
     } catch (error) {
         console.error('Error executing query:', error);
@@ -12,7 +13,6 @@ router.get('/', async (req, res) => {
     }
 })
 
-// Insert Validator
 router.post('/', async (req, res) => {
     try {
         const { company_id, competence, lives, revenue, sinister, accident_rate } = req.body
@@ -20,6 +20,7 @@ router.post('/', async (req, res) => {
         const [result] = await req.db.execute(
             `INSERT INTO Validators (company_id, competence, lives, revenue, sinister, accident_rate) VALUES (${company_id}, '${competence}', ${lives}, ${revenue}, ${sinister}, ${accident_rate})`
         );
+        req.db.release()
         res.status(201).json(result);
     } catch (error) {
         console.error('Error executing query:', error);
@@ -27,14 +28,14 @@ router.post('/', async (req, res) => {
     }
 })
 
-// Get Validator
 router.delete('/:id', async (req, res) => {
     try {
         const [result] = await req.db.execute(`DELETE FROM Validators WHERE id=${req.params.id}`);
+        req.db.release()
         if (result.affectedRows === 0) {
             res.status(404).json({ message: "Validator not found." })
         } else {
-            res.json({ message: 'Validador excluído com sucesso.' });
+            res.json({ message: `Validador excluído com sucesso.` });
         }
     } catch (error) {
         console.error('Error executing query:', error);
@@ -56,6 +57,7 @@ router.put('/', async (req, res) => {
             accident_rate = ${accident_rate}
             WHERE id = ${id}`
         );
+        req.db.release()
         res.status(201).json(result);
     } catch (error) {
         console.error('Error executing query:', error);

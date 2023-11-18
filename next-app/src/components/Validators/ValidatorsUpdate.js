@@ -43,7 +43,7 @@ function ValidatorsUpdate({ reloadPage }) {
         setValidatorUpdateData(prev => ({ ...prev, [name]: value }))
     }
 
-    const updateValidador = async () => {
+    const updateValidator = async () => {
         try {
             const response = await fetch("http://localhost:3008/api/validators", {
               method: "PUT",
@@ -147,7 +147,7 @@ function ValidatorsUpdate({ reloadPage }) {
                                         <label>Accident Rate:</label>
                                         <input onChange={handleInput} name="accident_rate" value={accident_rate} placeholder='' />
                                     </Form.Field>
-                                    <Button onClick={updateValidador} type='submit'>Update</Button>
+                                    <Button onClick={updateValidator} type='submit'>Update</Button>
                                 </>
                             )
                         :

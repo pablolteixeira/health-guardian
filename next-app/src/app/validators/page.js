@@ -5,6 +5,7 @@ import { Table, Menu, Container } from 'semantic-ui-react'
 
 import ValidatorsNew from '@/components/Validators/ValidatorsNew'
 import ValidatorsUpdate from '@/components/Validators/ValidatorsUpdate'
+import ValidadorsDelete from '@/components/Validators/ValidatorsDelete'
 
 function Validators() {
     const [load, setLoad] = useState(0)
@@ -67,10 +68,10 @@ function Validators() {
             <Container style={{width: "70%"}} textAlign='center'>
                 {
                     menuOption === "new" ?
-                        <ValidatorsNew reloadPage={reloadPage}/>
+                        <ValidatorsNew reloadPage={reloadPage} />
                     : menuOption === "update" ?
-                        <ValidatorsUpdate reloadPage={reloadPage}/>
-                    : null
+                        <ValidatorsUpdate reloadPage={reloadPage} />
+                    : <ValidadorsDelete reloadPage={reloadPage} />
                 }
             </Container>
             <br /><br />
