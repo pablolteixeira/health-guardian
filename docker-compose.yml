@@ -37,16 +37,18 @@ services:
       - my_network
 
   # Next.js Frontend Service
-  #frontend:
-  #  build:
-  #    context: ./path/to/your/frontend
-  #  container_name: frontend_container
-  #  ports:
-  #    - "80:3000"
-  #  networks:
-  #    - my_network
-  #  depends_on:
-  #    - api
+  frontend:
+    build:
+      context: ./next-app
+    container_name: frontend_container
+    environment:
+      PORT: 3000
+    ports:
+      - "8080:3000"
+    networks:
+      - my_network
+    depends_on:
+      - api
 
 networks:
   my_network:
