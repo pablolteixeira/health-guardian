@@ -95,8 +95,8 @@ function Revenues() {
                                     <Table.Row>
                                         <Table.Cell>{id}</Table.Cell>
                                         <Table.Cell>{company_id}</Table.Cell>
-                                        <Table.Cell>{value}</Table.Cell>
-                                        <Table.Cell>{data}</Table.Cell>
+                                        <Table.Cell>${value}</Table.Cell>
+                                        <Table.Cell>{data.slice(0, 10)}</Table.Cell>
                                     </Table.Row>
                                 )
                             })

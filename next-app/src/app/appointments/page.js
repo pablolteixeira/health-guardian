@@ -96,8 +96,8 @@ function Appointments() {
                                 return (
                                     <Table.Row>
                                         <Table.Cell>{id}</Table.Cell>
-                                        <Table.Cell>{value}</Table.Cell>
-                                        <Table.Cell>{competence}</Table.Cell>
+                                        <Table.Cell>${value}</Table.Cell>
+                                        <Table.Cell>{competence.slice(0, 10)}</Table.Cell>
                                         <Table.Cell>{company_id}</Table.Cell>
                                         <Table.Cell>{collaborator_id}</Table.Cell>
                                         <Table.Cell>{cod_procedure}</Table.Cell>

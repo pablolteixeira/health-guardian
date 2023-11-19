@@ -98,11 +98,11 @@ function Validators() {
                                     <Table.Row>
                                         <Table.Cell>{id}</Table.Cell>
                                         <Table.Cell>{company_id}</Table.Cell>
-                                        <Table.Cell>{competence}</Table.Cell>
+                                        <Table.Cell>{competence.slice(0, 10)}</Table.Cell>
                                         <Table.Cell>{lives}</Table.Cell>
-                                        <Table.Cell>{revenue}</Table.Cell>
-                                        <Table.Cell>{sinister}</Table.Cell>
-                                        <Table.Cell>{accident_rate}</Table.Cell>
+                                        <Table.Cell>${revenue}</Table.Cell>
+                                        <Table.Cell>${sinister}</Table.Cell>
+                                        <Table.Cell>{accident_rate}%</Table.Cell>
                                     </Table.Row>
                                 )
                             })
